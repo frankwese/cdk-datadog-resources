@@ -6,11 +6,15 @@ export interface DatadogIntegrationProps {
   /** Credentials for the Datadog API */
   readonly datadogCredentials: DatadogCredentials;
 
-  /** Role name */
+  /** The id of the account with which to integrate. */
   readonly accountId: string;
 
-  /** Role name */
-  readonly roleName: string;
+  /**
+   * The name of the created role.
+   *
+   * @default DatadogIntegrationRole
+   * */
+  roleName?: string;
 
 }
 
@@ -19,6 +23,8 @@ export interface DatadogIntegrationProps {
  */
 export class DatadogIntegration {
   constructor(scope: Construct, id: string, props: DatadogIntegrationProps) {
+    props.roleName ||= 'DatadogIntegrationRole';
+
     const cfnProperties = camelcaseKeys(props, {
       deep: true,
       pascalCase: true,
