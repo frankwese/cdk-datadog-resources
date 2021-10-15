@@ -23,7 +23,7 @@ export interface DatadogIntegrationProps {
  */
 export class DatadogIntegration {
   constructor(scope: Construct, id: string, props: DatadogIntegrationProps) {
-    props.roleName ||= 'DatadogIntegrationRole';
+    props.roleName = props.roleName || 'DatadogIntegrationRole';
 
     const cfnProperties = camelcaseKeys(props, {
       deep: true,
