@@ -25,6 +25,10 @@ export class DatadogIntegration {
     new CfnResource(scope, id, {
       type: 'Datadog::Integrations::AWS',
       properties: {
+        DatadogCredentials: {
+          ApiKey: props.datadogCredentials.apiKey,
+          ApplicationKey: props.datadogCredentials.applicationKey,
+        },
         AccountID: props.accountId,
         RoleName: props.roleName || 'DatadogIntegrationRole',
       },
